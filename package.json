@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build -w @ui-blocks/ds",
+    "playground": "npm run dev -w @ui-blocks/app"
   },
   "keywords": [],
   "author": "",
