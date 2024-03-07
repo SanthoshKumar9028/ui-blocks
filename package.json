@@ -7,7 +7,8 @@
     "build": "npm run build -w @ui-blocks/ds",
     "playground": "npm run dev -w @ui-blocks/app",
     "storybook": "npm run storybook -w @ui-blocks/ds",
-    "build-storybook": "npm run build-storybook -w @ui-blocks/ds"
+    "build-storybook": "npm run build-storybook -w @ui-blocks/ds",
+    "test": "npm run test -w @ui-blocks/ds"
   },
   "keywords": [],
   "author": "",
