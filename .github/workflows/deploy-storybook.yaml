@@ -16,6 +16,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - id: build-publish
       uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
       with:
         path: ./packages/ds/storybook-static
