@@ -17,9 +17,9 @@ export const NormalButton: Story = {
   },
 };
 
-export const RedButton: Story = {
+export const BlueButton: Story = {
   args: {
-    color: "red",
+    color: "blue",
     children: "Button"
   },
 };
