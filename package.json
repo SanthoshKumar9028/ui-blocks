@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run build -w @ui-blocks/ds",
-    "playground": "npm run dev -w @ui-blocks/app"
+    "playground": "npm run dev -w @ui-blocks/app",
+    "storybook": "npm run storybook -w @ui-blocks/ds",
+    "build-storybook": "npm run build-storybook -w @ui-blocks/ds"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,12 @@
     "playground/app"
   ],
   "devDependencies": {
-    "@types/node": "^20.11.24"
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.24",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.1.2"
   }
 }
