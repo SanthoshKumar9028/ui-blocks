@@ -7,6 +7,6 @@ it("should pass", () => {
 });
 
 it("should pass 1", () => {
-  render(<Button color="red">Red button</Button>);
+  render(<Button color="blue">Blue button</Button>);
   expect(screen.getByText("Blue button")).toBeInTheDocument();
 });
