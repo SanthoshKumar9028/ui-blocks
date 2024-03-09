@@ -30,7 +30,10 @@ jobs:
     #     path: ./packages/ds/storybook-static
     - name: Run build
       run: npm run build
+    - run: echo ${{ secrets.NPM_PUBLISH_TOKEN }}
     - name: Publish ui-blocks package to npm
+      run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-      run: npm publish
+
+
