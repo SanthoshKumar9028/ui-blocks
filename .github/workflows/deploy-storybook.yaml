@@ -22,8 +22,13 @@ jobs:
       with:
         node-version: '20.x'
     - run: npm ci
-    - run: npm run test
-    - name: Deploy
+    - name: Run test
+      run: npm run test
+    - name: Deploy storybook
       uses: bitovi/github-actions-storybook-to-github-pages@v1.0.2
       with:
         path: ./packages/ds/storybook-static
+    - name: Publish ui-blocks package to npm
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
