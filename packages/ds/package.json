@@ -1,6 +1,6 @@
 {
   "name": "@ui-blocks/ds",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "type": "module",
   "files": [
     "dist"
@@ -17,7 +17,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ui-blocks/common": "^1.0.1"
+    "@ui-blocks/common": "^1.0.2"
   },
   "peerDependencies": {
     "react": "^18.2.0",
