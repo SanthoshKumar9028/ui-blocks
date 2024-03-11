@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build -w @ui-blocks/ds",
+    "build:common": "npm run build -w @ui-blocks/common",
+    "build:ds": "npm run build -w @ui-blocks/ds",
     "playground": "npm run dev -w @ui-blocks/app",
     "storybook": "npm run storybook -w @ui-blocks/ds",
     "build-storybook": "npm run build-storybook -w @ui-blocks/ds",
@@ -15,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "workspaces": [
+    "packages/common",
     "packages/ds",
     "playground/app"
   ],

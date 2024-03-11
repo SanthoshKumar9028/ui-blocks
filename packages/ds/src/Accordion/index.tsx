@@ -1,3 +1,4 @@
+import { join } from "@ui-blocks/common";
 import { FC, ReactNode, useState } from "react";
 
 export interface AccordionProps {
@@ -13,7 +14,7 @@ const Accordion: FC<AccordionProps> = ({ title, children }) => {
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h4>{title}</h4>
         <button onClick={() => setOpen((prv) => !prv)}>
-          {open ? "close" : "open"}
+          {open ? join("pre_", "close") : "open"}
         </button>
       </div>
       {open && <div>{children}</div>}

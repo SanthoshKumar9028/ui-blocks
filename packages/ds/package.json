@@ -16,6 +16,9 @@
     "build-storybook": "storybook build",
     "test": "jest"
   },
+  "dependencies": {
+    "@ui-blocks/common": "^1.0.0"
+  },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
