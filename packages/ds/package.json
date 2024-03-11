@@ -17,7 +17,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ui-blocks/common": "^1.0.0"
+    "@ui-blocks/common": "^1.0.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",
