@@ -26,7 +26,7 @@ jobs:
     - id: versions_checker
       run: echo "changed_packages=@ui-blocks/common" >> "$GITHUB_OUTPUT"
       # run: node utils/showChangedPackageVersions.js >> "$GITHUB_OUTPUT"
-    - run: git show HEAD:.github/workflows/deploy-storybook.yaml
+    - run: git show HEAD^:.github/workflows/deploy-storybook.yaml
   deploy:
     runs-on: ubuntu-latest
     needs: find-changes
