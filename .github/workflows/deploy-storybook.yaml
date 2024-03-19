@@ -25,11 +25,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
-    - run: git checkout ${{ github.ref_name }}
-    - run: git log --format="%H" -n 2
     - id: versions_checker
       run: node utils/showChangedPackageVersions.js >> "$GITHUB_OUTPUT"
-    # - run: echo "changed_packages=@ui-blocks/common" >> "$GITHUB_OUTPUT"
   deploy:
     runs-on: ubuntu-latest
     needs: find-changes
@@ -40,6 +37,8 @@ jobs:
       with:
         node-version: '20.x'
         registry-url: 'https://registry.npmjs.org'
+        
+    - run: echo "changed_packages = ${{ needs.find-changes.outputs.changed_packages }}"
 
       if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks/common')
     - run: echo "@ui-blocks/common version changed"
