@@ -7,7 +7,7 @@ const getPackageVersion = async (packageFilePath) => {
 
   const commitIds = stdout.split("\n").filter(Boolean);
 
-  console.log(commitIds);
+  // console.log(commitIds);
 
   const commitChanges = await Promise.all(
     commitIds.map((id) => exec(`git show ${id}:${packageFilePath}`))
@@ -38,7 +38,7 @@ const packages = [{ path: "./packages/common/package.json" }];
 
   console.log(
     `changed_packages=${changedPackages
-      .filter(([cur, prv]) => cur.version != prv.version)
+      .filter(([cur, prv]) => cur.version != prv?.version)
       .map(([cur]) => cur.name)
       .join()}`
   );
