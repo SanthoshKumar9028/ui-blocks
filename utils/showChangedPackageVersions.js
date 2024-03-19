@@ -1,9 +1,14 @@
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 
-const getPackageVersion = async (packageFilePath, ...commits) => {
+const getPackageVersion = async (packageFilePath) => {
+  const { stderr, stdout } = await exec(`git log --format="%H" -n 2`);
+  if (stderr) throw stderr;
+
+  const commitIds = stdout.split("\n").filter(Boolean);
+
   const commitChanges = await Promise.all(
-    commits.map((commit) => exec(`git show ${commit}:${packageFilePath}`))
+    commitIds.map((id) => exec(`git show ${id}:${packageFilePath}`))
   );
 
   return commitChanges.map((commitChange) => {
@@ -18,12 +23,12 @@ const getPackageVersion = async (packageFilePath, ...commits) => {
   });
 };
 
-const packages = [{ path: "packages/common/package.json" }];
+const packages = [{ path: "./packages/common/package.json" }];
 
 (async () => {
   const changedPackages = await Promise.all(
     packages.map(({ path }) => {
-      return getPackageVersion(path, "HEAD", "HEAD");
+      return getPackageVersion(path);
     })
   );
 
