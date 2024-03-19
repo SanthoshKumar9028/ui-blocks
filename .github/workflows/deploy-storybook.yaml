@@ -19,15 +19,17 @@ jobs:
       changed_packages: ${{steps.versions_checker.outputs.changed_packages}}
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
     - name: Use Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
     - run: git checkout ${{ github.ref_name }}
+    - run: git log --format="%H" -n 2
     - id: versions_checker
-      run: git log --format="%H" -n 2
-      # run: node utils/showChangedPackageVersions.js >> "$GITHUB_OUTPUT"
-    - run: echo "changed_packages=@ui-blocks/common" >> "$GITHUB_OUTPUT"
+      run: node utils/showChangedPackageVersions.js >> "$GITHUB_OUTPUT"
+    # - run: echo "changed_packages=@ui-blocks/common" >> "$GITHUB_OUTPUT"
   deploy:
     runs-on: ubuntu-latest
     needs: find-changes
