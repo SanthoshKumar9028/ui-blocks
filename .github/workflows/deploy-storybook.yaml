@@ -40,11 +40,13 @@ jobs:
         
     - run: echo "changed_packages = ${{ needs.find-changes.outputs.changed_packages }}"
 
+    - id: common
       if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks/common')
-    - run: echo "@ui-blocks/common version changed"
+      run: echo "@ui-blocks/common version changed"
 
+    - id: ds
       if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks/ds')
-    - run: echo "@ui-blocks/ds version changed"
+      run: echo "@ui-blocks/ds version changed"
     # - name: Run test
     #   run: npm run test
     # - name: Deploy storybook
