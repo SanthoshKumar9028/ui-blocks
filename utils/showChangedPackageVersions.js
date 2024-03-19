@@ -23,7 +23,7 @@ const packages = [{ path: "packages/common/package.json" }];
 (async () => {
   const changedPackages = await Promise.all(
     packages.map(({ path }) => {
-      return getPackageVersion(path, "HEAD", "HEAD^");
+      return getPackageVersion(path, "HEAD", "HEAD");
     })
   );
 
