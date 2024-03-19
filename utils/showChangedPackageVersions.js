@@ -7,6 +7,8 @@ const getPackageVersion = async (packageFilePath) => {
 
   const commitIds = stdout.split("\n").filter(Boolean);
 
+  console.log(commitIds);
+
   const commitChanges = await Promise.all(
     commitIds.map((id) => exec(`git show ${id}:${packageFilePath}`))
   );
@@ -31,6 +33,8 @@ const packages = [{ path: "./packages/common/package.json" }];
       return getPackageVersion(path);
     })
   );
+
+  console.log(changedPackages);
 
   console.log(
     `changed_packages=${changedPackages
