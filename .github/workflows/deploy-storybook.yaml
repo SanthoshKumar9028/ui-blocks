@@ -13,23 +13,23 @@ permissions:
   id-token: write
 
 jobs:
-  find-changes:
-    runs-on: ubuntu-latest
-    outputs:
-      changed_packages: ${{steps.versions_checker.outputs.changed_packages}}
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 2
-    - name: Use Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
-    - id: versions_checker
-      run: node utils/showChangedPackageVersions.js >> "$GITHUB_OUTPUT"
+  # find-changes:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     changed_packages: ${{steps.versions_checker.outputs.changed_packages}}
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #     with:
+  #       fetch-depth: 2
+  #   - name: Use Node.js
+  #     uses: actions/setup-node@v4
+  #     with:
+  #       node-version: '20.x'
+  #   - id: versions_checker
+  #     run: node utils/showChangedPackageVersions.js >> "$GITHUB_OUTPUT"
   deploy:
     runs-on: ubuntu-latest
-    needs: find-changes
+    # needs: find-changes
     steps:
     - uses: actions/checkout@v4
       with: 
@@ -43,28 +43,27 @@ jobs:
     - name: Install packages
       run: npm ci
 
-    - name: Run test
-      run: npm run test
+    # - name: Run test
+    #   run: npm run test
 
-    - id: changes
-      if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks')
-    - run: echo "Changed packages = ${{ needs.find-changes.outputs.changed_packages }}"
+    # - id: changes
+    #   if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks')
+    # - run: echo "Changed packages = ${{ needs.find-changes.outputs.changed_packages }}"
 
-    - id: common
-      if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks/common')
-    - run: |
-        npm i -w @ui-blocks/common
-        npm run build:common
-        npm publish --access public -w @ui-blocks/common
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+    # - id: common
+    #   if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks/common')
+    # - run: |
+    #     npm i -w @ui-blocks/common
+    #     npm run build:common
+    #     npm publish --access public -w @ui-blocks/common
+    #   env:
+    #     NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-    - id: ds
+    # - id: ds
       # if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks/ds')
-    - run: |
-        npm i -w @ui-blocks/ds
-        npm run build:ds
-        npm publish --access public -w @ui-blocks/ds
+    - run: npm run build:ds
+        # npm i -w @ui-blocks/ds 
+        # npm publish --access public -w @ui-blocks/ds
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
