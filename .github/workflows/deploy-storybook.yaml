@@ -32,6 +32,8 @@ jobs:
     needs: find-changes
     steps:
     - uses: actions/checkout@v4
+      with: 
+        path: './packages/ds'
     - name: Use Node.js
       uses: actions/setup-node@v4
       with:
@@ -44,9 +46,11 @@ jobs:
     - name: Run test
       run: npm run test
 
+    - id: changes
       if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks')
     - run: echo "Changed packages = ${{ needs.find-changes.outputs.changed_packages }}"
-      
+
+    - id: common
       if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks/common')
     - run: |
         npm i -w @ui-blocks/common
@@ -55,7 +59,8 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks/ds')
+    - id: ds
+      # if: contains(needs.find-changes.outputs.changed_packages, '@ui-blocks/ds')
     - run: |
         npm i -w @ui-blocks/ds
         npm run build:ds
