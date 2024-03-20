@@ -41,7 +41,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
 
     - name: Install packages
-      run: npm ci
+      run: npm i
 
     # - name: Run test
     #   run: npm run test
